@@ -1,23 +1,26 @@
+#º”√‹≈‰÷√
 jasypt:
   encryptor:
     password: lengleng
 
 server:
   tomcat:
-    max-threads: 500 
-    min-spare-threads: 50 
+    max-threads: 500 # Maximum amount of worker threads.
+    min-spare-threads: 50 # Minimum amount of worker threads
 
 spring:
+  cloud: 
+    stream: 
+      default-binder: kafka
+      kafka: 
+        binder:
+          zk-nodes: 49.4.12.198:2181
+          brokers: 49.4.12.198:9092
   redis:
-    remote: false       
-    host: 192.168.1.21
-    port: 6379
-    password:
-  rabbitmq:
-    host: 192.168.1.21
-    port: 5672
-    username: mss
-    password: moshushi@123s
+    remote: false        #cachecloud ªÒ»°
+    host: 49.4.12.13
+    port: 6666
+    password: moshushi123
   http:
     multipart:
       max-file-size: 1000MB
@@ -30,13 +33,13 @@ redis:
 ribbon:
   eager-load:
     enabled: true
-    clients: unis-auth,unis-upms-service
+    clients: unis-auth,unis-upms-service,unis-project-service,unis-expert-service
   Httpclient:
     enabled: false
   OkHttp:
     enabled: true
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
 
 feign:
   hystrix:
@@ -69,6 +72,7 @@ hystrix:
           thread:
             timeoutInMilliseconds: 60000
 
+#º‡øÿ∂Ãµ„≈‰÷√
 management:
   security:
     enabled: false

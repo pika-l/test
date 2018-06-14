@@ -1,12 +1,8 @@
 server:
   port: 3000
-
+  
+# datasoureƒ¨»œ π”√JDBC
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: moshushi123
-    jdbc-url: jdbc:mysql://49.4.12.66:3306/unis?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
   freemarker:
     allow-request-override: false
     allow-session-override: false
@@ -21,11 +17,23 @@ spring:
     prefer-file-system-access: true
     suffix: .ftl
     template-loader-path: classpath:/templates/
+      
+unis:
+  auth:
+    clientId: unis123
+    clientSecret: unis123
+    scope: server
+  social:
+    qq:
+      providerId: qq
+      clientId: ENC(jYTHlVSN8p2C3KrLz40H7JJYZcQs3SAK)
+      clientSecret: ENC(DmTyBXeNFG7Z6pooPCtDUMcI1MYTiO3ldaEOuVWmOTpgDVmyGMsI42hz6OM+0pEE)
 
-ignore:
-  urls:
+urls:
+  anon:
     - /authentication/**
     - /**/*.css
+    - /**/*.js
     - /social
     - /signin
     - /signup
@@ -34,3 +42,11 @@ ignore:
     - /metrics/**
     - /loggers/**
     - /mobile/token
+fdfs:
+  file-host: http://49.4.12.152:8888/
+  tracker-list:
+    - 49.4.12.152:22122
+bus: 
+  test: wwq123
+logging:
+  config: classpath:logback.xml
