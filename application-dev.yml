@@ -1,16 +1,15 @@
-#º”√‹≈‰÷√
 jasypt:
   encryptor:
     password: lengleng
 
 server:
   tomcat:
-    max-threads: 500 # Maximum amount of worker threads.
-    min-spare-threads: 50 # Minimum amount of worker threads
+    max-threads: 500 
+    min-spare-threads: 50 
 
 spring:
   redis:
-    remote: false        #cachecloud ªÒ»°
+    remote: false       
     host: 192.168.1.21
     port: 6379
     password:
@@ -70,7 +69,6 @@ hystrix:
           thread:
             timeoutInMilliseconds: 60000
 
-#º‡øÿ∂Ãµ„≈‰÷√
 management:
   security:
     enabled: false
