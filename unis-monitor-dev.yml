@@ -1,0 +1,29 @@
+server:
+  port: 5001
+
+spring:
+  # zipkin:
+  #     base-url: http://localhost:5002
+  # sleuth:
+  #   enabled: true
+  #   sampler:
+  #     percentage: 1
+  boot:
+    admin:
+      turbine:
+        location: unis-monitor
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream,turbine.stream
+
+turbine:
+    app-config: unis-gateway 
+    combine-host-port: true
+    cluster-name-expression: new String('default') 
+
+notifier:
+  mobile:
+    enabled: true
+    mobiles:
+      - 18810284375
+  dingTalk:
+    enabled: true
