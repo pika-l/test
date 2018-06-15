@@ -8,11 +8,13 @@ server:
     min-spare-threads: 50 
 
 spring:
-  rabbitmq:
-    host: 192.168.1.21
-    port: 5672
-    username: mss
-    password: moshushi@123s
+  cloud: 
+    stream: 
+      default-binder: kafka
+      kafka: 
+        binder:
+          zk-nodes: 49.4.12.198:2181
+          brokers: 49.4.12.198:9092
   redis:
     remote: false   
     host: 49.4.12.13
