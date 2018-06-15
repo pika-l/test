@@ -1,0 +1,89 @@
+server:
+  port: 9999
+
+spring:
+  zipkin:
+    rabbitmq:
+      queue: zipkin
+  sleuth:
+    sampler:
+      percentage: 0.2
+
+zuul:
+  ribbon:
+    eager-load:
+      enabled: true
+      clients: unis-auth,unis-upms-service,unis-project-service,unis-expert-service
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  routes:
+    unis-auth:
+      path: /auth/**
+      serviceId: unis-auth
+      stripPrefix: true
+      sensitiveHeaders:
+    unis-upms-service:
+      path: /admin/**
+      serviceId: unis-upms-service
+      stripPrefix: true
+      sensitiveHeaders:
+    unis-project-service:
+      path: /project/**
+      serviceId: unis-project-service
+      stripPrefix: true
+      sensitiveHeaders:
+    unis-expert-service:
+      path: /expert/**
+      serviceId: unis-expert-service
+      stripPrefix: true
+      sensitiveHeaders:
+  ratelimit:
+    key-prefix: unis-ratelimite
+    enabled: true
+    repository: REDIS
+    behind-proxy: true
+    policies:
+      unis-upms-service:
+        limit: 100
+        quota: 100
+        refresh-interval: 3
+
+security:
+  validate:
+    code: false
+  sessions: stateless
+  oauth2:
+    client:
+      client-id: unis123
+      client-secret: unis123
+      user-authorization-uri: ${security.auth.server}/oauth/authorize
+      access-token-uri: ${security.auth.server}/oauth/token
+      scope: server
+    resource:
+      loadBalanced: true
+      token-info-uri: ${security.auth.server}/oauth/check-token
+      service-id: unis-gateway
+      jwt:
+         key-uri: ${security.auth.server}/oauth/token_key 
+
+urls:
+  anon:
+    - /mobile/**
+    - /auth/**
+    - /admin/code/*
+    - /admin/smsCode/*
+    - /admin/user/info
+    - /admin/menu/userTree
+    - /swagger-resources/**
+    - /swagger-ui.html
+    - /*/v2/api-docs
+    - /swagger/api-docs
+    - /webjars/**
+fdfs:
+  file-host: http://49.4.12.152:8888/
+  tracker-list:
+    - 49.4.12.152:22122
+logging:
+  config: classpath:logback.xml
