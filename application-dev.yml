@@ -4,17 +4,19 @@ jasypt:
 
 server:
   tomcat:
-    max-threads: 500
-    min-spare-threads: 50 
+    max-threads: 500 # Maximum amount of worker threads.
+    min-spare-threads: 50 # Minimum amount of worker threads
 
 spring:
-  rabbitmq:
-    host: 192.168.1.21
-    port: 5672
-    username: mss
-    password: moshushi@123s
+  cloud: 
+    stream: 
+      default-binder: kafka
+      kafka: 
+        binder:
+          zk-nodes: 49.4.12.198:2181
+          brokers: 49.4.12.198:9092
   redis:
-    remote: false   
+    remote: false     
     host: 49.4.12.13
     port: 6666
     password: moshushi123
@@ -30,7 +32,7 @@ redis:
 ribbon:
   eager-load:
     enabled: true
-    clients: unis-auth,unis-upms-service,unis-project-service,unis-expert-service
+    clients: unis-auth,unis-upms-service,unis-project-service,unis-expert-service,unis-search-service
   Httpclient:
     enabled: false
   OkHttp:
