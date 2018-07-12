@@ -45,7 +45,7 @@ security:
       token-info-uri: ${security.auth.server}/oauth/check-token
       service-id: unis-gateway
       jwt:
-         key-uri: ${security.auth.server}/oauth/token_key #解析jwt令牌所需要密钥的地址
+         key-uri: ${security.auth.server}/oauth/token_key
 
 urls:
   anon:
